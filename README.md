@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mxro/trs.svg?branch=master)](https://travis-ci.org/mxro/trs)
+
 # trs
 
 Exploration of a popular coding puzzle - be welcome to use for inspiration but DON'T COPY :)
