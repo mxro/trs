@@ -42,7 +42,7 @@ public class TestApp {
 		File tempFile = testFolder.newFile("file1.txt");
 		copyFromResourceToFile("/file1_round_and_round.txt", tempFile);
 
-		App.main(new String[] { "", tempFile.getAbsolutePath() });
+		App.main(new String[] { tempFile.getAbsolutePath() });
 
 		Assert.assertEquals("1,1,EAST\n", systemOutRule.getLog());
 	}
@@ -59,7 +59,7 @@ public class TestApp {
 		File tempFile = testFolder.newFile("file1.txt");
 		copyFromResourceToFile("/file2_the_wall.txt", tempFile);
 
-		App.main(new String[] { "", tempFile.getAbsolutePath() });
+		App.main(new String[] { tempFile.getAbsolutePath() });
 
 		Assert.assertEquals("5,4,EAST\n", systemOutRule.getLog());
 	}
