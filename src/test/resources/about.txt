@@ -1,0 +1,3 @@
+These files are used to perform an end-to-end test of the application.
+
+More complex scenarios for the simulation engine are performed in unit tests - 'closer' to the implementation of the subject of the test.
