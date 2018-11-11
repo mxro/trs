@@ -18,12 +18,12 @@ import de.mxro.trs.parser.RobotCommandParsers;
 public class App {
 	
 	public static void main(String[] args) {
-		if (args.length != 2 || !new File(args[1]).exists()) {
+		if (args.length != 1 || !new File(args[0]).exists()) {
 			System.err.println("This application expects one parameter with a valid file path.");
 		}
 		
 		// parsing inputs and performing simulation
-		String results = run(new File(args[1]), Arrays.asList(Validators.onTable(5, 5)));
+		String results = run(new File(args[0]), Arrays.asList(Validators.onTable(5, 5)));
 		
 		// printing results to stdout
 		System.out.println(results);
