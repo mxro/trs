@@ -167,7 +167,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  10
+                  11
                 </td>
               </tr>
                           <tr>
@@ -326,20 +326,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/mxro/trs/checkstyle.html#de.mxro.trs.App.java">de/mxro/trs/App.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  29
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://github.com/mxro/trs/checkstyle.html#de.mxro.trs.engine.RenderingEngine.java">de/mxro/trs/engine/RenderingEngine.java</a>
                 </td>
                 <td>
@@ -350,6 +336,20 @@ under the License.
                 </td>
                 <td>
                   15
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/mxro/trs/checkstyle.html#de.mxro.trs.App.java">de/mxro/trs/App.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  28
                 </td>
               </tr>
                       </tbody>
