@@ -10,7 +10,7 @@ This readme is split into three parts:
 
 - [Software Development Practices](#software-development-practices): Which provides an overview of the practices followed in developing this implementation.
 - [Usage](#usage): Which provides information how to use this application.
-- [Development](#development): Which provides information on how to develop this application.
+- [Development](#development): Which provides information on how to check out and continue developing this application.
 
 ## Software Development Practices
 
@@ -129,7 +129,7 @@ The best things about these reports are that they took no more than five minutes
 
 ## Usage
 
-If you would like to use or dive into developing this simuation, please find some information in the following.
+If you would like to use this simulation, please find some information in the following.
 
 ### Requirements
 
@@ -175,7 +175,7 @@ System.out.println(RenderingEngine.renderReport(commands, results));
 
 ## Development
 
-Thanks to the magic of Java and Maven it's quite easy getting started with developing this project. Please find the requirements and steps below. 
+Thanks to the magic of Java and Maven it's quite easy to get started with developing this project. Please find the requirements and steps below. 
 
 ### Requirements
 
