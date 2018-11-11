@@ -6,34 +6,42 @@ Exploration of a popular coding puzzle - be welcome to use for inspiration but D
 
 Please find the instructions this implementation is based upon [here](https://joneaves.wordpress.com/2014/07/21/toy-robot-coding-test/#comment-792). I won't be repeating the instructions here but they are an excellent documentation artifact for exploring this implementation. Thus if you haven't read these instructions yet I highly recommend to do so.
 
+This readme is split into three parts:
+
+- [Software Development Practices](#software-development-practices): Which provides an overview of the practices followed in developing this implementation.
+- [Usage](#usage): Which provides information how to use this application.
+- [Development](#development): Which provides information on how to develop this application.
+
 ## Software Development Practices
 
-In this documentation I will instead focus on a number of aspects of this implementation I consider desirable practices for developing software. Architecting and writing software is such a rich and challenging field and my recommendations should be by no means considered universal. They are further not the only or best way to go about implementing this coding puzzle - there are doubtless many excellent alternatives. However, I hope that the following practices and their application in this application provide some inspiration for completing this code challenge or other software development work.
+In the following sections I will highlight some practices followed in developing this implementation of the toy robot scenario. For each practice, I will first briefly portray it, then give an example how it was used in the implementation and lastly mention some advantages and disadvantages of the practice.
+
+I would like to note that architecting and writing software is such a rich and challenging field and the suggested practices should be by no means considered universal. They are further not the only or best way to go about implementing this coding puzzle - there are doubtless many excellent alternatives. However, I hope that the following practices and their application in this application provide some inspiration for completing this code challenge or other software development work.
 
 ### Low Method Complexity
 
-Keeping methods clean and simple the key premises from the famous book ['Clean Code' by 'Bob' Martin](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882). 
+Keeping methods clean and simple is one of the key premises from the famous book ['Clean Code' by 'Bob' Martin](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882). 
 
-This implementation is designed to assure methods are as short as possible and stay within a maximum limit of 10-20 LOC - with most methods falling well below this limit. The following method is exemplary for most methods in this implementation:
+This implementation was designed to assure methods are as short as possible and stay within a maximum limit of 10-20 LOC - with most methods falling well below this limit. The following [method](https://mxro.github.io/trs/xref/de/mxro/trs/internal/PlacedRobot.html#L30) is exemplary for most methods in this implementation:
 
-```
-	/**
-	 * Move the robot to the direction it is facing.
-	 */
-	public Robot move() {
-		return new PlacedRobot(x + direction.getDeltaX(), y + direction.getDeltaY(), direction);
-	}
+```java
+/**
+ * Move the robot to the direction it is facing.
+ */
+public Robot move() {
+	return new PlacedRobot(x + direction.getDeltaX(), y + direction.getDeltaY(), direction);
+}
 ```
 
 One major advantage of using short and simple methods is that they are easy to read and understand. They further help to increase modularity and decrease code duplication. One disadvantage of using shorter and less complex methods is that this approach usually requires to create more classes and apply design patterns such as the command pattern with the associated overheads. 
 
 ### Immutability
 
-While functional programming has been around for many years, it has so far failed to enter the mainstream of everyday programming - at least in its purest forms such as in Haskell and Clojure. That notwithstanding, in the past 'object-oriented' languages have started to adopt more functional approaches within their established foundations. In Java, for instance, we have the Streams API since Java 8. I was very lucky to have had a lecturer who was - even more than 10 years ago when I took his copmuter science courses - very enthusiastic about trying to program in Java as if it was Haskell. Ever since, I have tried to adhere to one key principle of functional programming in all my development work: to achieve immutability whenever possible.
+While functional programming has been around for many years, it has so far failed to enter the mainstream of everyday programming - at least in its purest forms such as in Haskell and Clojure. That notwithstanding, in the past 'object-oriented' languages have started to adopt more functional approaches within their established foundations. In Java, for instance, we have the Streams API since Java 8. I was very lucky to have had a lecturer who was - even more than 10 years ago when I took his computer science courses - very enthusiastic about trying to program in Java as if it was Haskell. Ever since, I have tried to adhere to one key principle of functional programming in all my development work: to achieve immutability whenever possible.
 
-The implementations for the two key interfaces of this implementation, <code>Robot</code> and <code>Command</code> are immutable. For instance, see the following excerpt from the <code>Robot</code> class. All it's fields are final which renders this class immutable. 
+The implementations for the two key interfaces of this implementation, [Robot](https://mxro.github.io/trs/apidocs/de/mxro/trs/Robot.html) and [Command](https://mxro.github.io/trs/apidocs/de/mxro/trs/Command.html) are immutable. For instance, see the following excerpt from the [PlacedRobot](https://mxro.github.io/trs/xref/de/mxro/trs/internal/PlacedRobot.html) class. All it's fields are final which renders this class immutable. 
 
-```
+```java
 /**
  * The state of the robot when placed on the table.
  *
@@ -57,7 +65,7 @@ public class PlacedRobot implements Robot {
 
 ```
 
-One of advantage of immutablity is that it assures thread-safety - which, especially in complex systems, is often difficult to achieve. However immutability also introduces other subtle changes to an application - chiefly that one mutable state is often transformed into a sequence of immutable states. This often makes code clearer and easier to understand. However over the years I have also learned that immutability should not be a dogma. There are many cases in software development where a traditional, iterative and stateful approach leads to easier solutions. Thus a number of algorithms in this implementation are iterative such as the one for running the simulation in <code>SimulationEngine</code>.
+One of advantage of immutablity is that it assures thread-safety - which, especially in complex systems, is often difficult to achieve. However immutability also introduces other subtle changes to an application - chiefly that one mutable state is often transformed into a sequence of immutable states. This often makes code clearer and easier to understand. However over the years I have also learned that immutability should not be a dogma. There are many cases in software development where a traditional, iterative and stateful approach leads to easier solutions. Thus a number of algorithms in this implementation are iterative such as the one for running the simulation in [SimulationEngine](https://mxro.github.io/trs/xref/de/mxro/trs/engine/SimulationEngine.html).
 
 ### Design Patterns
 
@@ -77,7 +85,7 @@ Writing automated tests for software has become so self evident that it barely w
 
 This implementation is architected in a way that the individual parts of the application can easily be tested in isolation. For instance, the engine for running the simulation (<code>SimulationEngine</code>) can easily be tested without the components for parsing robot commands and rendering outputs:
 
-```
+```java
 @Test
 public void test_supplied_case_a() {
 	List<Command> commands = Arrays.asList(new PlaceCommand(0, 0, Direction.NORTH), new MoveCommand(),
@@ -90,7 +98,7 @@ public void test_supplied_case_a() {
 
 Likewise the parsing engine can be tested in isolation without need for the simulation engine:
 
-```
+```java
 @Test
 public void test_move_command() {
 	Assert.assertEquals(Arrays.asList(new MoveCommand()), getParser().parse("MOVE"));
@@ -121,7 +129,7 @@ The best things about these reports are that they took no more than five minutes
 
 ## Usage
 
-If you would like to use this software to run a simulation of a toy robot navigating across a 5x5 field, please find the following for complentess sake.
+If you would like to use or dive into developing this simuation, please find some information in the following.
 
 ### Requirements
 
@@ -129,7 +137,7 @@ If you would like to use this software to run a simulation of a toy robot naviga
 
 ### Command Line
 
-This project is packaged as a 'fat' jar which can be download from the releases page of this project. After downloading this JAR, simple call it as follows:
+This project is packaged as a 'fat' jar which can be download from the [releases page of this project](https://github.com/mxro/trs/releases). After downloading this JAR, simple call it as follows:
 
 ```
 java -jar toy-robot-simulator-0.0.1-SNAPSHOT-distribution.jar [filename]
