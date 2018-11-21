@@ -19,6 +19,7 @@ public class App {
 	public static void main(String[] args) {
 		if (args.length != 1 || !new File(args[0]).exists()) {
 			System.err.println("This application expects one parameter with a valid file path.");
+			System.exit(1);
 		}
 		
 		// parsing inputs and performing simulation
